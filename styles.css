@@ -7,127 +7,123 @@
 
 body {
   margin: 0;
-  background: #0d0d0d;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, #0d0d0d, #000);
   font-family: 'Orbitron', Arial, sans-serif;
-  color: #0ff;
+  color: #a0c8f0; /* Light blue tone */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
+  justify-content: start;
   overflow: hidden;
-  perspective: 1500px;
   position: relative;
 }
 
-/* Header styles */
+/* Header styles with subtle movement */
 h1 {
   margin-top: 50px;
   font-size: 3em;
   letter-spacing: 2px;
-  color: #0ff;
-  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
-  animation: flicker 2s infinite;
+  color: #a0c8f0; /* Light blue */
+  text-shadow: 0 0 5px #a0c8f0, 0 0 10px #a0c8f0;
+  animation: flicker 2s infinite, pulseColor 3s infinite alternate;
   z-index: 10;
 }
 
 /* Flicker animation for header */
 @keyframes flicker {
   0%,19%,21%,23%,25%,54%,56%,100% { opacity: 1; }
-  20%,22%,24%,55% { opacity: 0.4; }
+  20%,22%,24%,55% { opacity: 0.6; }
 }
 
-/* Navigation container */
-nav {
-  margin-top: 40px;
+/* Pulsing color animation for header */
+@keyframes pulseColor {
+  0% { color: #a0c8f0; }
+  100% { color: #8080ff; } /* darker purple/blue */
+}
+
+/* Container for links with subtle background and shadow */
+.link-container {
+  margin-top: 50px;
   display: flex;
-  gap: 30px;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(20, 20, 50, 0.3);
+  box-shadow: inset 0 0 10px #555, 0 0 20px rgba(80, 80, 150, 0.4);
+  backdrop-filter: blur(8px);
+  animation: pulseBorder 4s infinite;
   z-index: 10;
 }
 
-/* Links styles */
-a {
-  position: relative;
-  display: inline-block;
-  color: #0ff;
-  text-decoration: none;
+/* Animate the container border glow subtly */
+@keyframes pulseBorder {
+  0%, 100% { box-shadow: inset 0 0 10px #555, 0 0 20px rgba(80, 80, 150, 0.4); }
+  50% { box-shadow: inset 0 0 20px #888, 0 0 40px rgba(120, 120, 200, 0.6); }
+}
+
+/* Style for each link with soft background and border */
+.link {
+  padding: 12px 24px;
+  border-radius: 50px;
+  background-color: rgba(20, 20, 50, 0.5);
+  border: 2px solid #66ccff; /* Light blue border */
+  color: #a0c8f0; /* Light blue text */
+  font-family: 'Orbitron', Arial, sans-serif;
   font-size: 1.2em;
-  padding: 10px 20px;
-  border: 2px solid #0ff;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff inset;
-  overflow: hidden;
-}
-
-/* Hover effects for links */
-a:hover {
-  background: #0ff;
-  color: #000;
-  box-shadow: 0 0 30px #0ff, 0 0 60px #0ff inset;
-  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(102, 204, 255, 0.4);
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  margin: 5px;
 }
 
-/* Pseudo-element for animated glow effect */
-a::after {
-  content: "";
-  position: absolute;
-  top: -5px; left: -5px; right: -5px; bottom: -5px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff inset;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-a:hover::after {
-  opacity: 1;
-  transform: scale(1.2);
+/* Hover effect for links */
+.link:hover {
+  background-color: #6688ff; /* Slightly brighter blue */
+  color: #ffffff; /* White text for contrast */
+  box-shadow: 0 0 15px rgba(102, 204, 255, 0.8);
+  transform: scale(1.05);
 }
 
-/* Background glow for entire body with pulsing animation */
+/* Subtle glow animation for links */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(102, 204, 255, 0.4); }
+  50% { box-shadow: 0 0 15px rgba(102, 204, 255, 0.8); }
+}
+
+/* Background starfield effect for a dreamy space vibe */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: radial-gradient(circle, #0ff, transparent 70%);
+  background: radial-gradient(ellipse at center, #0d0d0d, #000);
   opacity: 0.2;
-  animation: pulse 10s infinite ease-in-out;
+  animation: pulseBackground 20s infinite ease-in-out;
   z-index: -1;
 }
 
-/* Pulsing animation for background glow */
-@keyframes pulse {
+/* Pulsing background to create depth */
+@keyframes pulseBackground {
   0%, 100% { opacity: 0.2; }
   50% { opacity: 0.4; }
 }
 
-/* Additional body hover effect for 3D rotation */
-body:hover {
-  transform: rotateY(1deg);
-  transition: transform 0.5s ease;
-}
-
-/* Additional floating particles for a starfield effect */
-@keyframes float {
-  0% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-10px) translateX(10px); }
-  100% { transform: translateY(0) translateX(0); }
-}
-
-/* Create multiple particles for starfield */
+/* Floating particles for starfield effect */
 .particle {
   position: absolute;
-  background: #0ff;
+  background: #a0c8f0;
   border-radius: 50%;
-  opacity: 0.8;
-  animation: float 20s ease-in-out infinite;
+  opacity: 0.7;
+  animation: floatStars 30s ease-in-out infinite;
 }
 .particle:nth-child(1) {
   width: 2px; height: 2px;
-  top: 10%; left: 10%;
+  top: 5%; left: 10%;
   animation-delay: 0s;
 }
 .particle:nth-child(2) {
@@ -151,51 +147,22 @@ body:hover {
   animation-delay: 3s;
 }
 
-/* Animation for particles */
-@keyframes float {
+/* Animate floating particles */
+@keyframes floatStars {
   0%, 100% { transform: translateY(0) translateX(0); }
   50% { transform: translateY(-20px) translateX(20px); }
 }
 
-/* Add glow lines for a more sci-fi grid overlay */
-.grid {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(to right, rgba(0,255,255,0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(0,255,255,0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  pointer-events: none;
-  z-index: 5;
-  animation: gridAnim 20s linear infinite;
-}
-
-@keyframes gridAnim {
-  from { background-position: 0 0, 0 0; }
-  to { background-position: 50px 50px, 50px 50px; }
-}
-
-/* Additional subtle animations for neon effects */
-@keyframes neonGlow {
-  0%, 100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
-  50% { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
-}
-
-/* Apply neon glow to header */
-h1 {
-  animation: flicker 2s infinite, neonGlow 2s infinite alternate;
-}
-
-/* Responsive adjustments */
+/* Responsive design */
 @media(max-width: 600px) {
   h1 {
     font-size: 2em;
   }
-  nav {
-    gap: 15px;
+  .link-container {
+    gap: 10px;
   }
-  a {
+  .link {
     font-size: 1em;
-    padding: 8px 16px;
+    padding: 10px 20px;
   }
 }
