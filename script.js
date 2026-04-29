@@ -1,3 +1,6 @@
+/* =========================
+   LINK DATA
+========================= */
 const links = [
   {
     name: "Ruby",
@@ -26,48 +29,52 @@ const links = [
   }
 ];
 
-const container = document.getElementById('linkContainer');
-const toggleButton = document.getElementById('toggleButton');
+/* =========================
+   ELEMENTS
+========================= */
+const container = document.getElementById("linkContainer");
+const toggleButton = document.getElementById("toggleButton");
 
-let linksVisible = false; // track current state
+let linksVisible = false;
 
-// Generate links
-links.forEach(link => {
-  if (link.show) {
-    const a = document.createElement('a');
+/* =========================
+   BUILD LINKS
+========================= */
+function createLinks() {
+  container.innerHTML = ""; // safety reset
+
+  links.forEach(link => {
+    if (!link.show) return;
+
+    const a = document.createElement("a");
     a.href = link.url;
-    a.target = '_blank';
+    a.target = "_blank";
     a.textContent = link.name;
-    a.className = 'link';
-
-    // Optional: add a hover effect or animation on each link
-    a.addEventListener('mouseenter', () => {
-      a.style.transform = 'scale(1.05)';
-    });
-    a.addEventListener('mouseleave', () => {
-      a.style.transform = 'scale(1)';
-    });
+    a.className = "link";
 
     container.appendChild(a);
-  }
-});
+  });
+}
 
-// Toggle display on button click
-toggleButton.addEventListener('click', () => {
+/* =========================
+   TOGGLE FUNCTION
+========================= */
+function toggleLinks() {
   linksVisible = !linksVisible;
+
   if (linksVisible) {
-    container.classList.remove('hide');
-    container.classList.add('show');
-    container.style.display = 'flex'; // ensure it's visible
-    toggleButton.textContent = 'Hide Links';
+    container.classList.add("show");
+    container.classList.remove("hide");
+    toggleButton.textContent = "Hide Links";
   } else {
-    // Animate fade out
-    container.classList.remove('show');
-    container.classList.add('hide');
-    // Hide after transition
-    setTimeout(() => {
-      container.style.display = 'none';
-    }, 300);
-    toggleButton.textContent = 'Show Links';
+    container.classList.remove("show");
+    container.classList.add("hide");
+    toggleButton.textContent = "Show Links";
   }
-});
+}
+
+/* =========================
+   INIT
+========================= */
+createLinks();
+toggleButton.addEventListener("click", toggleLinks);
