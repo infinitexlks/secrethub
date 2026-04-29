@@ -19,12 +19,17 @@ const links = [
     url: "https://pizagame.com/?utm_source=ubghub.org&utm_medium=referral&utm_campaign=ubghub.org",
     show: true
   },
+  {
+    name: "FrogArcade",
+    url: "https://frogiesarcade.win/?utm_source=ubghub.org&utm_medium=referral&utm_campaign=ubghub.org",
+    show: true
+  }
 ];
 
 const container = document.getElementById('linkContainer');
 const toggleButton = document.getElementById('toggleButton');
 
-let linksShown = false; // track current state
+let linksVisible = false; // track current state
 
 // Generate links
 links.forEach(link => {
@@ -35,18 +40,34 @@ links.forEach(link => {
     a.textContent = link.name;
     a.className = 'link';
 
+    // Optional: add a hover effect or animation on each link
+    a.addEventListener('mouseenter', () => {
+      a.style.transform = 'scale(1.05)';
+    });
+    a.addEventListener('mouseleave', () => {
+      a.style.transform = 'scale(1)';
+    });
+
     container.appendChild(a);
   }
 });
 
-// Event listener for toggle button
+// Toggle display on button click
 toggleButton.addEventListener('click', () => {
-  linksShown = !linksShown;
-  if (linksShown) {
-    container.style.display = 'flex';
+  linksVisible = !linksVisible;
+  if (linksVisible) {
+    container.classList.remove('hide');
+    container.classList.add('show');
+    container.style.display = 'flex'; // ensure it's visible
     toggleButton.textContent = 'Hide Links';
   } else {
-    container.style.display = 'none';
+    // Animate fade out
+    container.classList.remove('show');
+    container.classList.add('hide');
+    // Hide after transition
+    setTimeout(() => {
+      container.style.display = 'none';
+    }, 300);
     toggleButton.textContent = 'Show Links';
   }
 });
