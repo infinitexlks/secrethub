@@ -7,18 +7,22 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="background">
-        <!-- Your video or image will go here -->
-    </div>
+
+  <!-- Background video -->
+  <div class="background">
+    <video autoplay muted loop playsinline id="bgVideo">
+      <source src="videos/background.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <h1>LinksHub</h1>
 
-<!-- Toggle button -->
-<button id="toggleButton">Show Links</button>
+  <!-- Toggle button -->
+  <button id="toggleButton">Show Links</button>
 
-<!-- Container for links -->
-<div id="linkContainer" class="link-container"></div>
+  <!-- Container for links -->
+  <div id="linkContainer" class="link-container"></div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
