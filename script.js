@@ -26,7 +26,27 @@ const links = [
     name: "Galaxy",
     url: "https://youareagooner.ovie.gob.mx/onboarding/",
     show: true
-  }
+  },
+   {
+      name: "Space",
+      url: "https://extralearning.pirazymatma.pl/",
+      show: true
+   },
+   {
+      name: "DayDreamX",
+      url: "https://edu4u.dyndns.berlin/",
+      show: true
+   },
+   {
+      name: "StudyHub",
+      url: "https://science.flextron.xyz/",
+      show: true
+   },
+   {
+      name: "Vapor",
+      url: "https://sciencestudy.global.ssl.fastly.net/",
+      show: true
+   },
 ];
 
 /* =========================
